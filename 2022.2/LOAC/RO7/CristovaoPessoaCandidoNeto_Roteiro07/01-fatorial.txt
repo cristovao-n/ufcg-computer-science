@@ -1,0 +1,18 @@
+.data
+	n: .word 5
+
+.text
+        lw a0, n # carrega o valor N no registrador a0.
+		addi a1, x0, 1 # carrega o valor 1 no registrador a1
+        addi a2, x0, 1
+    loop:
+        beq a0, a1, fim # repete ate N = 1
+        mul a2, a2, a0  # calculo parcial do fatorial
+        addi a0, a0, -1 # decrementa N
+        j loop
+    fim:
+        nop
+
+# a0 - N
+# a1 - 1
+# a2 - fatorial de n

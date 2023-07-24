@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-12-11T14:02:32.943-0300</date>
+  <logger>CRISTOVAO PESSOA CANDIDO NETO</logger>
+  <level>FINE</level>
+  <message>File 121110199-CRISTOVAO PESSOA CANDIDO NETO.zip was received. It was sent by CRISTOVAO PESSOA CANDIDO NETO from IP 192.168.0.125 at 11-12-2022 14*02*32</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-12-11T14:14:48.632-0300</date>
+  <logger>CRISTOVAO PESSOA CANDIDO NETO</logger>
+  <level>FINE</level>
+  <message>File 121110199-CRISTOVAO PESSOA CANDIDO NETO.zip was received. It was sent by CRISTOVAO PESSOA CANDIDO NETO from IP 192.168.0.125 at 11-12-2022 14*14*48</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-12-11T19:41:36.690-0300</date>
+  <logger>CRISTOVAO PESSOA CANDIDO NETO</logger>
+  <level>FINE</level>
+  <message>File 121110199-CRISTOVAO PESSOA CANDIDO NETO.zip was received. It was sent by CRISTOVAO PESSOA CANDIDO NETO from IP 192.168.0.125 at 11-12-2022 19*41*36</message>
+</record>

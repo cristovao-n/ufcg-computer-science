@@ -1,0 +1,9 @@
+.data
+	value: .word 0xfe
+
+.text
+        lw a1, 0x1000000C # loads the memory address into a1
+        lw a0, value # loads the value variable
+        sw a2, 0(a1) # stores in a2 the value in the memory address stored in a1
+        lw x10, 0(a1)
+
