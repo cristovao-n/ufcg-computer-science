@@ -185,7 +185,7 @@ Shell funciona como um REPL
 
 pseudocódigo do shell
 
-```c
+```cpp
 int main() {
 	while(1) {
 		print("$ ");
@@ -247,7 +247,7 @@ Algoritmos e estruturas para determinar a prioridade de cada processo
 
 Prioridade calculada com base na fatia de tempo utilizada, etc
 
-### Real time Operating System
+## Real time Operating System
 
 Exemplos de uso
 
@@ -268,50 +268,50 @@ Espera ocupada é implementada no problema do word count
 
 Novo problema: Produtor/Consumidor
 
-> **Produtor/Consumidor**
->
-> Nesse problema, temos outros requisitos de sincronização além dos padrões
->
-> Padrão: Produtor espera pelo Consumidor caso ele esteja acessando a região crítica e vice-versa
->
-> Novos requisitos:
->
-> Caso o buffer esteja cheio, o produtor precisa esperar
->
-> Caso o buffer esteja vazio, o consumidor precisa esperar
->
-> Pseudocódigo do produtor:
->
-> ```cpp
-> Produtor() {
-> 	while(true) {
-> 		item = produz_item();
-> 		if (n_itens == n) sleep();
-> 		coloca_item*(item);
-> 		n_itens++;
-> 	}
-> }
-> ```
->
-> ```cpp
-> Consumidor() {
-> 	while(true) {
-> 		if (n_itens == 0) sleep();
-> 		item = retira_item*();
-> 		n_itens--;
-> 	}
-> }
-> ```
->
-> -   Dentro de `retira_item` e `coloca_item` temos o código que implementa a espera ocupada
->
-> Problema: interrupção entre a verificação do Produtor `if (n_itens == n)` e a instrução de sleep `sleep()`
->
-> Caso o Produtor produza os n itens no seu espaço de tempo da CPU, ele irá entrar em sleep e quando o Consumidor retornar ele irá entrar em sleep também
->
-> Nome do problema: **deadlock**
->
-> Dijkstra propôs o semáforo para resolver esse problema
+## Produtor/Consumidor
+
+Nesse problema, temos outros requisitos de sincronização além dos padrões
+
+Padrão: Produtor espera pelo Consumidor caso ele esteja acessando a região crítica e vice-versa
+
+Novos requisitos:
+
+Caso o buffer esteja cheio, o produtor precisa esperar
+
+Caso o buffer esteja vazio, o consumidor precisa esperar
+
+Pseudocódigo do produtor:
+
+```cpp
+Produtor() {
+	while(true) {
+		item = produz_item();
+		if (n_itens == n) sleep();
+		coloca_item*(item);
+		n_itens++;
+	}
+}
+```
+
+```cpp
+Consumidor() {
+	while(true) {
+		if (n_itens == 0) sleep();
+		item = retira_item*();
+		n_itens--;
+	}
+}
+```
+
+-   Dentro de `retira_item` e `coloca_item` temos o código que implementa a espera ocupada
+
+Problema: interrupção entre a verificação do Produtor `if (n_itens == n)` e a instrução de sleep `sleep()`
+
+Caso o Produtor produza os n itens no seu espaço de tempo da CPU, ele irá entrar em sleep e quando o Consumidor retornar ele irá entrar em sleep também
+
+Nome do problema: **deadlock**
+
+Dijkstra propôs o semáforo para resolver esse problema
 
 ### Semáforo
 
@@ -323,18 +323,18 @@ Semaforo {
 	List<ProcessoId> l;
 }
 
-void down(ProcessId process) {
+void wait(ProcessId process) {
 	if (this.v == 0) {
 		this.l.insere(process);
-		wait();
+		sleep();
 	} else {
 		this.v--;
 	}
 }
 
-void up() {
+void sign() {
 	if (!this.l.isEmpty()) {
-		wakeup(this.l.get
+		wakeup(this.l.get);
 	} else {
 		this.v++;
 	}
