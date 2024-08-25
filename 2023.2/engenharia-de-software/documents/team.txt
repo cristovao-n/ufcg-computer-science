@@ -1,0 +1,45 @@
+Cristovão
+Erick
+Gabriel Yuri
+Guilherme Toledo
+Ismael
+João Henrique
+João Victor
+Lucas
+Mayara
+Rafael
+
+
+SE('Cristovão'!B4 = "✅"; "Cristovão"; ""); SE('Erick'!B4 = "✅"; "Erick"; ""); SE('Gabriel Yuri'!B4 = "✅"; "Gabriel Yuri"; ""); SE('Guilherme Toledo'!B4 = "✅"; "Guilherme Toledo"; ""); SE('Ismael'!B4 = "✅"; "Ismael"; ""); SE('João Henrique'!B4 = "✅"; "João Henrique"; ""); SE('João Victor'!B4 = "✅"; "João Victor"; ""); SE('Lucas'!B4 = "✅"; "Lucas"; ""); SE('Mayara'!B4 = "✅"; "Mayara"; ""); SE('Rafael'!B4 = "✅"; "Rafael"; "");
+
+=CONT.SE('Cristovão'!B4;"✅") + CONT.SE(Erick!B4;"✅") + CONT.SE('Gabriel Yuri'!B4;"✅") + CONT.SE('Guilherme Toledo'!B4;"✅") + CONT.SE(Ismael!B4;"✅") + CONT.SE('João Henrique'!B4;"✅") + CONT.SE('João Victor'!B4;"✅") + CONT.SE(Lucas!B4;"✅") + CONT.SE(Mayara!B4;"✅") + CONT.SE(Rafael!B4;"✅")
+
+
+
+categories:
+
+documentation
+  - # team-info
+  - # documents
+  - # stack
+
+discussion
+  - # discussion
+  - # brainstorm
+  - # code review
+
+meetings
+  - # meeting-schedule
+  - > meeting
+  - > pair programming
+
+off-topic
+  - # off-topic
+  - > off-topic
+
+
+
+roles:
+
+- developer
+- scrum-master
