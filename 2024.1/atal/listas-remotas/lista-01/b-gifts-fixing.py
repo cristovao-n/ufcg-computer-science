@@ -10,12 +10,9 @@ for _ in range(test_cases):
 
     count = 0
     for i in range(gifts):
-        while candies[i] > min_candy and oranges[i] > min_orange:
-            candies[i] = candies[i] - 1
-            oranges[i] = oranges[i] - 1
-            count += 1
-        while candies[i] > min_candy:
-            count += 1
-        while oranges[i] > min_orange:
-            count += 1
+        move_candies = candies[i] - min_candy
+        move_oranges = oranges[i] - min_orange
+        
+        count += max(move_candies, move_oranges)
+    
     print(count)
