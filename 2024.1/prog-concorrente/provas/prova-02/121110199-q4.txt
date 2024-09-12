@@ -1,0 +1,48 @@
+Aluno: Cristovão Pessoa Cândido Neto
+Matrícula: 121110199
+---------------------------------------------------
+Questão 4:
+
+LockThree: Problema de corretude. O código não garante a exclusão mútua na RC
+
+1  public void lock() {
+2    for(;;) {
+3      flags[my_id] = true;
+4      if (flags[1 - my_id] == false) break;
+5      flags[my_id] = false;
+6      while (flags[1 - my_id] == true);
+7    }
+8  }
+
+
+Exemplo de fluxo de execução problemático:
+
+Execução               flags
+T0L3                   [T, F]
+T1L3                   [T, T]
+T0L4                   [T, T]
+T1L4                   [T, T]
+T0L5                   [F, T]
+T1L5                   [F, F]
+
+Nesse momento ambas as threads podem acabar entrando na região crítica pois ambas as flags estão com False, sugerindo que a região crítica está livre
+Nese cenário a expressão do while retorna False e as threads não ficam em spin wait
+
+LockFour: Problema de Starvation
+
+public void lock() {
+  int my_id = Thread.getId();
+  if (my_id == 1) {
+    flags[my_id] = true;
+    while (flags[1 - my_id] == true);
+  } else {
+    for (;;) {
+      flags[my_id] = true;
+      if (flags[1 - my_id] == false) break;
+      flags[my_id] = false;
+      while (flags[1 - my_id] == true);
+    }
+  }
+}
+
+Quando ocorre um conflito onde ambas as threads querem entrar na RC a thread com id 1 é priorizada, pois a thread 0 sempre age como a vítima, setando sua flag de volta para false e permitindo que a thread 1 acesse a região crítica

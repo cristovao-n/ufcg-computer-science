@@ -1,0 +1,59 @@
+Aluno: Cristovão Pessoa Cândido Neto
+Matrícula: 121110199
+---------------------------------------------------
+Questão 3:
+
+Código original:
+
+class LockOne {
+  private boolean[] flags = new Boolean[2];
+
+  public void lock() {
+    int i = Thread.getId();
+    int j = 1 - i;
+    flags[i] = true;
+    while (flags[j]);
+  }
+
+  public void unlock() {
+    int i = Thread.getId();
+    flags[i] = false;
+  }
+}
+
+
+Código modificado pelo compilador:
+
+1   class LockOne {
+2     private boolean[] flags = new Boolean[2];
+3
+4     public void lock() {
+5       int i = Thread.getId();
+6       int j = 1 - i;
+7       boolean sibling = flags[j];
+8       flags[i] = true;
+9       while (sibling);
+10    }
+11
+12    public void unlock() {
+13      int i = Thread.getId();
+14      flags[i] = false;
+15    }
+16  }
+
+
+Temos um problema de corretude. O código acima não garante a exclusão mútua e permite que as duas threads acessem a região crítica ao mesmo tempo
+
+Exemplo de fluxo de execução problemático:
+
+
+Execução                 flags          sibling
+T0L7                     [F, F]         F
+T1L7                     [F, F]         F
+T0L8                     [T, F]         F
+T1L8                     [T, T]         F
+T0L9                     [T, T]         F
+T1L9                     [T, T]         F
+
+
+As duas threads podem passar pelo while e entrar na região crítica

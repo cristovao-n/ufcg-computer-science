@@ -1,0 +1,28 @@
+java.util.concurrent.Semaphore;
+
+class BufferedQueue {
+    int capacity;
+    private final Queue<T> queue;
+    S sc;
+    S sp;
+
+    new BufferedQueue(int capacity) {
+        this.capacity = capacity;
+        this.queue = new LinkedList<>();
+        this.sc = new Semaphore(0);
+        this.sp = new Semaphore(capacity);
+    }
+
+    T dequeue() {
+        sc.wait();
+        T item = queue.poll();
+        sp.signal();
+        return item;
+    }
+
+    void enqueue(T item) {
+        sp.wait();
+        queue.add(item);
+        sc.signal();
+    }
+}

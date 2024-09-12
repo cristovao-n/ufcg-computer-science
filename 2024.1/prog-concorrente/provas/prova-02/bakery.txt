@@ -1,0 +1,22 @@
+int n_threads = 1024;
+int[n_threads] tickets = [∅...∅];
+int[n_threads] choosing = [F...F];
+
+void lock() {
+    int me = Thread.getId();
+    choosing[me] = T;
+    tickets[me] = max(tickets);
+    tickets[me]++;
+    choosing[me] = F;
+    for i = ∅ until n_threads {
+        while (choosing[i]);
+        while (tickets[i] ≠ ∅ and 
+               (tickets[i] < tickets[me] or i < me)
+              );
+    };
+}
+
+void unlock() {
+    int me = Thread.getId();
+    tickets[me] = ∅;
+}

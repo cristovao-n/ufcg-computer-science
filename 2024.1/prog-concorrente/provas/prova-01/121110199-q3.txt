@@ -1,0 +1,26 @@
+main() {
+    int readers = 0
+    S mutex = S(1)
+    S lock = S(1)
+
+    func data wrap_read() {
+        mutex.wait()
+        readers += 1
+        if (readers == 1)
+            lock.wait()
+        mutex.signal()
+        data = read()
+        mutex.wait()
+        readers -= 1
+        if (readers == 0)
+            lock.signal()
+        mutex.signal()
+        return data
+    }
+
+    func void wrap_write(data d) {
+        lock.wait()
+        write(d)
+        lock.signal()
+    }
+}

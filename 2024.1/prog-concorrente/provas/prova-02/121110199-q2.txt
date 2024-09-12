@@ -1,0 +1,37 @@
+Aluno: Cristovão Pessoa Cândido Neto
+Matrícula: 121110199
+---------------------------------------------------
+Questão 2:
+
+As travas TTAS possuem um melhor desempenho do que as travas TAS porque elas evitam a escrita...
+
+Nas CPUs existe uma memória cache. Essa memória serve para melhorar o desempenho de execução dos algoritmos...
+Operações de escrita invalidam o cache e forçam a CPU a consultar o valor diretamente na memória...
+
+Nas travas TAS o problema é que sempre que uma Thread testa para ver se pode entrar na região crítica ocorre a escrita do valor True na memória, sendo que o único caso em que essa escrita é útil é quando a trava está liberada e a Thread vai entrar na região crítica, nesse caso o valor, que estava com False, deve ser escrito de volta para True
+Nos demais casos essa escrita redundante apenas causa uma invalidação dos caches das demais Threads...
+
+
+As travas TTAS resolvem esse problema minimizando o número de operações de escrita na memória...
+
+TTAS:
+
+lock() {
+  while (True) {
+    while (lock.get());
+    if (!lock.getAndSet(T)) {
+      break;
+    }
+  }
+}
+
+
+TAS:
+
+lock() {
+  while (lock.getAndSet(T));
+}
+
+unlock() {
+  lock.set(F);
+}

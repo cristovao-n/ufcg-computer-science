@@ -1,0 +1,39 @@
+1 - Ideia: usar Lightswitch + rendezvouz
+
+main () {
+    int externals = 0
+    S mutex = S(1)
+    S lock = S(1)
+    S externalDone = S(0)
+    S internalDone = S(0)
+    S mutex2 = S(1)
+
+    func void externalRoute(req) {
+        mutex.wait()
+        externals += 1
+        if (externals == 1) {
+            lock.wait()
+        }
+        mutex.signal()
+        handle()
+        mutex.wait()
+        if(externals == 4) {
+            externalDone.signal()
+            lock.signal()
+            internalDone.wait()
+            externals = 0
+        }
+        mutex.signal()
+    }
+
+    func void internalRoute(req) {
+        mutex2.wait()
+        lock.wait()
+        handle()
+        internalDone.signal()
+        lock.signal()
+        externalDone.wait()
+        mutex2.signal()
+    }
+
+}
