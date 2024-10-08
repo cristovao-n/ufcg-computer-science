@@ -11,6 +11,7 @@ Operações de escrita invalidam o cache e forçam a CPU a consultar o valor dir
 Nas travas TAS o problema é que sempre que uma Thread testa para ver se pode entrar na região crítica ocorre a escrita do valor True na memória, sendo que o único caso em que essa escrita é útil é quando a trava está liberada e a Thread vai entrar na região crítica, nesse caso o valor, que estava com False, deve ser escrito de volta para True
 Nos demais casos essa escrita redundante apenas causa uma invalidação dos caches das demais Threads...
 
+Dados compartilhados em cache exigem um protocolo de coerência de cache. Esse protocolo tem um overhead que ocupa o barramento
 
 As travas TTAS resolvem esse problema minimizando o número de operações de escrita na memória...
 
