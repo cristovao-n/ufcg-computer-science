@@ -1,5 +1,9 @@
 # Camada de Aplicação
 
+- Application protocol services
+- HTTP Protocol
+- DNS Protocol
+
 ## O que um protocolo da camada de aplicação define:
 
 -   Sintaxe da mensagem
@@ -67,7 +71,13 @@ Métodos, códigos de status e a maioria dos campos de cabeçalho permanecem ina
 -   push objetos não solicitados para o cliente.
 -   Dividir objeto em quadros
 
-### Sockets
+## WebSockets
 
+
+## DNS Protocol
+
+DNS - Domain Name System
+
+TODO: 
 
 
