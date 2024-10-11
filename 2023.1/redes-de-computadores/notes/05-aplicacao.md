@@ -66,3 +66,8 @@ Métodos, códigos de status e a maioria dos campos de cabeçalho permanecem ina
 -   Ordem de transmissão de objetos baseada em prioridade
 -   push objetos não solicitados para o cliente.
 -   Dividir objeto em quadros
+
+### Sockets
+
+
+

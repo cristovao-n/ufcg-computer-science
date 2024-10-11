@@ -12,6 +12,42 @@
 -   Vazão mínima necessária para o bom funcionamento da aplicação
 -   Segurança - Criptografia, integridade dos dados
 
+## Multiplexing / Demultiplexing
+
+Since a computer can have multiple processes, the data sent by one process of the client needs to be multiplexed so that they are all sent by the same IP address  
+When it reaches the server, it needs to be demultiplexed to the correct process that should handle the data
+
+### Sockets
+
+When a connection is established, a socket is allocated in the client in a given port number  
+And the server has its own socket in a given port number, and it is ready to receive request in that port
+
+In TCP connections, the server creates a socket for each client since it's connection-oriented
+
+#### Why Sockets
+
+The layers below application are controlled by the operating system  
+The socket is the API provided by the operating system where the applications, in the application layer, can receive and send data to the network  
+It's essentially a buffer
+
+### Datagrams
+
+The datagrams have, at the top-level, the source IP address and the destination IP address  
+With this information the routers can deliver the datagram to the correct IP address
+
+The datagram has one transport-layer segment  
+This segment will have the source port and destination port.  
+The Operating System will know the right socket based on these ports  
+In TCP connections, the OS will use a 4-tuple to identify the right socket
+
+#### UDP Demultiplexing
+
+![UDP Demultiplexing](../assets/udp-demultiplexing.png)
+
+#### TCP Demultiplexing
+
+![TCP Demultiplexing](../assets/tcp-demultiplexing.png)
+
 ## Principais protocolos
 
 -   TCP: Transmission Control Protocol
