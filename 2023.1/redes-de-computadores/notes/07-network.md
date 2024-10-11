@@ -78,15 +78,3 @@ To solve the problem of IPv4 address space exhaustion, NAT, Network Address Tran
 NAT has been controversial, specially because it manipulates ports, which should be manipulated only in the end devices
 
 ![nat](../assets/nat.png)  
-
-
-## Middleboxes
-
-
-
-
-
-
-
-
-
