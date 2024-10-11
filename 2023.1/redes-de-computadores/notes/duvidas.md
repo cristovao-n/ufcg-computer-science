@@ -20,3 +20,9 @@
     > Permite uma maior quantidade de possibilidades
     >
     > IP na rede local e outro IP que o roteador usa para a internet. Dessa forma temos um endereço usado pelo o roteador e todos os elementos conectados ao roteador tem seu próprio IP
+
+
+Using ngrok abstractions to configure the NAT port forwarding feature
+
+TODO: Check LSI subnet
+99, 163... How is that possible? Shouldn't the subnet have a unique public IP?
