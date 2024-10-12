@@ -1,8 +1,8 @@
 # Camada de Aplicação
 
-- Application protocol services
-- HTTP Protocol
-- DNS Protocol
+-   Application protocol services
+-   HTTP Protocol
+-   DNS Protocol
 
 ## O que um protocolo da camada de aplicação define:
 
@@ -73,11 +73,24 @@ Métodos, códigos de status e a maioria dos campos de cabeçalho permanecem ina
 
 ## WebSockets
 
+TODO: 
 
 ## DNS Protocol
 
-DNS - Domain Name System
+DNS, or Domain Name System, is a fundamental component of the internet. The primary function of DNS is to resolve domain names into IP addresses. This process allows users to access websites using easy-to-remember names instead of numeric IP addresses.
 
-TODO: 
+### Hierarchy
 
+-   Root Level: At the top are the root servers, which know where to find the top-level domains (TLDs), such as .com, .org, and .net.
+-   TLD Level: Below the root are the TLD servers, which handle requests for specific domains under their TLD (e.g., .com).
+-   Authoritative Servers: These servers store the actual IP address information for specific domains.
 
+### How DNS Works
+
+When you type a URL into your browser, a DNS request is initiated to resolve the domain name.  
+The browser checks its cache to see if it has a recent IP address for the domain. If not, it proceeds with a DNS query.  
+The request is sent to a recursive DNS resolver (often provided by your ISP). This resolver will handle the entire query process.  
+If the resolver doesn't have the answer, it queries a root DNS server, which directs it to the appropriate TLD server.  
+The resolver then queries the TLD server, which provides the authoritative name server for the domain.  
+Finally, the resolver queries the authoritative server for the specific domain, which returns the corresponding IP address.  
+The resolver sends the IP address back to the user's browser, allowing it to connect to the web server.
