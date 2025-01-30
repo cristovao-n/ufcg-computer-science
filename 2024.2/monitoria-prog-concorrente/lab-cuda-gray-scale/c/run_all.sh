@@ -1,20 +1,20 @@
-if [ -n "$1" ]; then
-  num_threads="$1"
+if [ -z "$1" ]; then
+  input_file="3MB_parrot.png"
 else
-  num_threads="2"
+  input_file="$1"
 fi
 
-
 # Serial
-mkdir -p serial/bin && gcc -g serial/image_grayscale_filter.c -o serial/bin/image_grayscale_filter.o -lm
+cd serial
 echo "Serial: start"
-time serial/bin/image_grayscale_filter.o ../data/salt_and_pepper2.png
+bash run.sh $input_file
 echo "Serial: end"
 
 echo
+cd ..
 
 # Concurrent
-mkdir -p concurrent/bin && gcc -g concurrent/image_grayscale_filter.c -o concurrent/bin/image_grayscale_filter.o -lm
+cd concurrent
 echo "Concurrent: start"
-time concurrent/bin/image_grayscale_filter.o ../data/salt_and_pepper2.png
+bash run.sh $input_file
 echo "Concurrent: end"
