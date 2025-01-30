@@ -5,6 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void convertToGrayscale(int width, int height, unsigned char *originalImage,
+                        unsigned char *grayscaleImage) {
+  // Convert each pixel to grayscale
+  for (int y = 0; y < height; y++) {
+    for (int x = 0; x < width; x++) {
+      int idx = (y * width + x) * 3;
+      unsigned char r = originalImage[idx];
+      unsigned char g = originalImage[idx + 1];
+      unsigned char b = originalImage[idx + 2];
+
+      // Apply grayscale formula
+      grayscaleImage[y * width + x] =
+          (unsigned char)(0.299 * r + 0.587 * g + 0.114 * b);
+    }
+  }
+}
+
 /**
  * Applies a grayscale filter to an image.
  *
@@ -12,7 +29,7 @@
  * @param outputPath Path to the output image
  * @param kernelSize Size of the mean kernel
  */
-void convertToGrayscale(const char *inputPath, const char *outputPath) {
+void applyGrayscaleFilter(const char *inputPath, const char *outputPath) {
   // Load the input image
   int width, height, channels;
   unsigned char *originalImage =
@@ -31,19 +48,7 @@ void convertToGrayscale(const char *inputPath, const char *outputPath) {
     exit(1);
   }
 
-  // Convert each pixel to grayscale
-  for (int y = 0; y < height; y++) {
-    for (int x = 0; x < width; x++) {
-      int idx = (y * width + x) * 3;
-      unsigned char r = originalImage[idx];
-      unsigned char g = originalImage[idx + 1];
-      unsigned char b = originalImage[idx + 2];
-
-      // Apply grayscale formula
-      grayscaleImage[y * width + x] =
-          (unsigned char)(0.299 * r + 0.587 * g + 0.114 * b);
-    }
-  }
+  convertToGrayscale(width, height, originalImage, grayscaleImage);
 
   // Save the grayscale image
   if (!stbi_write_jpg(outputPath, width, height, 1, grayscaleImage, 100)) {
@@ -61,7 +66,7 @@ void convertToGrayscale(const char *inputPath, const char *outputPath) {
 /**
  * Main function for demonstration.
  *
- * Usage: ./image_to_grayscale <input_file>
+ * Usage: ./script <input_file>
  */
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -72,7 +77,7 @@ int main(int argc, char *argv[]) {
   const char *inputFile = argv[1];
   const char *outputFile = "grayscale_output.jpg";
 
-  convertToGrayscale(inputFile, outputFile);
+  applyGrayscaleFilter(inputFile, outputFile);
 
   printf("Grayscale image saved to %s\n", outputFile);
 
