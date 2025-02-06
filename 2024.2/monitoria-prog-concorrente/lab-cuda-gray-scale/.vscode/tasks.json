@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile and run CUDA",
+            "type": "shell",
+            "command": "cd '${relativeFileDirname}' && mkdir -p bin && nvcc -g -G ${fileBasename} -o bin/${fileBasenameNoExtension}.o && bin/${fileBasenameNoExtension}.o",
+            "group": {
+                "kind": "build",
+            },
+            "problemMatcher": ["$nvcc"],
+            "args": ["../../data/3MB_parrot.png"],
+        },
+        {
+            "label": "Compile and run C",
+            "type": "shell",
+            "command": "cd '${relativeFileDirname}' && mkdir -p bin && gcc -g ${fileBasename} -o bin/${fileBasenameNoExtension}.o  && bin/${fileBasenameNoExtension}.o",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+            }
+        }
+    ]
+}
