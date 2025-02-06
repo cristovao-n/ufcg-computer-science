@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
+#include <time.h>
 
 void convertToGrayscale(int width, int height, unsigned char *originalImage,
                         unsigned char *grayscaleImage) {
@@ -50,7 +51,11 @@ void applyGrayscaleFilter(const char *inputPath, const char *outputPath) {
     exit(1);
   }
 
+  clock_t start = clock();
   convertToGrayscale(width, height, originalImage, grayscaleImage);
+  clock_t end = clock();
+  double time_spent = ((double)(end - start)) / CLOCKS_PER_SEC;
+  printf("CPU execution time: %f ms\n", time_spent * 1000);
 
   // Save the grayscale image
   if (!stbi_write_jpg(outputPath, width, height, 1, grayscaleImage, 100)) {

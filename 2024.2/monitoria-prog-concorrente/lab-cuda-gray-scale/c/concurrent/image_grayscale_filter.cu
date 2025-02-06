@@ -63,8 +63,19 @@ void applyGrayscaleFilter(const char *inputPath, const char *outputPath)
   dim3 blockSize(16, 16); // 16x16 threads per block
   dim3 gridSize((width + blockSize.x - 1) / blockSize.x, (height + blockSize.y - 1) / blockSize.y);
 
+  cudaEvent_t start, stop;
+  cudaEventCreate(&start);
+  cudaEventCreate(&stop);
+
+  cudaEventRecord(start);
   convertToGrayscale<<<gridSize, blockSize>>>(deviceOriginalImage, deviceGrayscaleImage, width, height);
   cudaDeviceSynchronize();
+  cudaEventRecord(stop);
+
+  cudaEventSynchronize(stop);
+  float milliseconds = 0;
+  cudaEventElapsedTime(&milliseconds, start, stop);
+  printf("Kernel execution time: %f ms\n", milliseconds);
 
   // Allocate memory for the grayscale image in the host
   unsigned char *hostGrayscaleImage = (unsigned char *)malloc(width * height * sizeof(unsigned char));
