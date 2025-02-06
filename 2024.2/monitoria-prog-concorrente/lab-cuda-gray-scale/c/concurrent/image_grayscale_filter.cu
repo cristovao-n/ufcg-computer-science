@@ -5,6 +5,7 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define BLOCK_SIZE_1D 1024
 
@@ -94,6 +95,14 @@ void applyGrayscaleFilter(const char *inputPath, const char *outputPath)
  */
 int main(int argc, char *argv[])
 {
+
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working directory: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+    }
+
   if (argc < 2)
   {
     fprintf(stderr, "Usage: %s <input_file>\n", argv[0]);

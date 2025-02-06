@@ -4,6 +4,8 @@
 #include "../lib/stb_image_write.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
 
 void convertToGrayscale(int width, int height, unsigned char *originalImage,
                         unsigned char *grayscaleImage) {
@@ -69,6 +71,13 @@ void applyGrayscaleFilter(const char *inputPath, const char *outputPath) {
  * Usage: ./script <input_file>
  */
 int main(int argc, char *argv[]) {
+  char cwd[PATH_MAX];
+
+  if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    printf("Current working directory: %s\n", cwd);
+  } else {
+    perror("getcwd() error");
+  }
   if (argc < 2) {
     fprintf(stderr, "Usage: %s <input_file>\n", argv[0]);
     return 1;
